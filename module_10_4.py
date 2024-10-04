@@ -50,7 +50,7 @@ class Cafe:
     def discuss_guests(self):
         for t in self.thr:
             for table in self.tables:
-                if table.guest == t:
+                if table.guest == t and t.is_alive:
                     t.join()
                     print(f'{t.name} покушал(-а) и ушёл(ушла)')
                     print(f'Стол номер {table.number} свободен')
@@ -61,8 +61,6 @@ class Cafe:
                         print(f'{t.name} вышел(-ла) из очереди и сел(-а) за стол номер {table.number}')
                         t.start()
                         self.thr.append(t)
-                    else:
-                        continue
 
 
 # Создание столов
@@ -78,3 +76,4 @@ cafe = Cafe(*tables)
 cafe.guest_arrival(*guests)
 # Обслуживание гостей
 cafe.discuss_guests()
+
